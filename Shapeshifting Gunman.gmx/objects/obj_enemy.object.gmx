@@ -32,6 +32,9 @@ player_damage = 10;
 
 // Weapon weaknesses
 pistol_weakness = 25;
+smg_weakness = 50;
+shotgun_weakness = 75;
+sniper_weakness = 100;
 
 // Create Enemy Skin
 skin = instance_create(x,y,obj_enemy_skin);
@@ -81,7 +84,15 @@ if (enemy_health &lt;= 0)
 if (place_meeting(x,y,obj_bullet))
 {
     /// Decrease health if hit with bullet
-    enemy_health -= pistol_weakness;
+    
+    if (obj_player.weapon = weapon_states.pistol)
+        enemy_health -= pistol_weakness;
+    if (obj_player.weapon = weapon_states.smg)
+        enemy_health -= smg_weakness;
+    if (obj_player.weapon = weapon_states.shotgun)
+        enemy_health -= shotgun_weakness;
+    if (obj_player.weapon = weapon_states.sniper)
+        enemy_health -= sniper_weakness;
 
     with instance_place(x,y,obj_bullet) //execute the following code inside the instance of the bullet that hit the enemy
     {
