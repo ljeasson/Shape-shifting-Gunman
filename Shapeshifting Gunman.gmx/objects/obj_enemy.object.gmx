@@ -32,7 +32,7 @@ player_damage = 10;
 
 // Weapon weaknesses
 pistol_weakness = 25;
-smg_weakness = 50;
+smg_weakness = 10;
 shotgun_weakness = 75;
 sniper_weakness = 100;
 
@@ -81,7 +81,10 @@ if (enemy_health &lt;= 0)
 }
 
 // Bullet actions
-if (place_meeting(x,y,obj_bullet))
+if (place_meeting(x,y,obj_bullet) 
+    or place_meeting(x,y,obj_smg_bullet) 
+    or place_meeting(x,y,obj_shotgun_shot)
+    or place_meeting(x,y,obj_sniper_bullet))
 {
     /// Decrease health if hit with bullet
     
@@ -95,6 +98,18 @@ if (place_meeting(x,y,obj_bullet))
         enemy_health -= sniper_weakness;
 
     with instance_place(x,y,obj_bullet) //execute the following code inside the instance of the bullet that hit the enemy
+    {
+        instance_destroy() //get rid of the bullet that hit 
+    }
+    with instance_place(x,y,obj_smg_bullet) //execute the following code inside the instance of the bullet that hit the enemy
+    {
+        instance_destroy() //get rid of the bullet that hit 
+    }
+    with instance_place(x,y,obj_shotgun_shot) //execute the following code inside the instance of the bullet that hit the enemy
+    {
+        instance_destroy() //get rid of the bullet that hit 
+    }
+    with instance_place(x,y,obj_sniper_bullet) //execute the following code inside the instance of the bullet that hit the enemy
     {
         instance_destroy() //get rid of the bullet that hit 
     }

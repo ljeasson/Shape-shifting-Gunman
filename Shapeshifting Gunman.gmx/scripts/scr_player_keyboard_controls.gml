@@ -30,25 +30,21 @@ if (vspeed < -max_speed) {vspeed = -max_speed};
 
 // Shoot
  // Pistol
-if (weapon = weapon_states.pistol)
+if (weapon == weapon_states.pistol)
 {
     if (mouse_check_button_pressed(mb_left))
     {
-        var bullet = instance_create(x,y,obj_bullet);
-        bullet.speed = obj_bullet.bullet_speed;
-        bullet.direction = point_direction(x,y,mouse_x,mouse_y);
+        instance_create(x,y,obj_pistol_bullets);
     }
 }
  // SMG
-if (weapon = weapon_states.smg)
+if (weapon == weapon_states.smg)
 {
     if (mouse_check_button(mb_left))
     {
         if (fire_again)
         {
-            var bullet = instance_create(x,y,obj_bullet);
-            bullet.speed = obj_bullet.bullet_speed;
-            bullet.direction = point_direction(x,y,mouse_x,mouse_y);
+            instance_create(x,y,obj_smg_bullets);
             
             fire_again = false;
             alarm[0] = 3.25;
@@ -56,23 +52,13 @@ if (weapon = weapon_states.smg)
     }
 }
  // Shotgun
-if (weapon = weapon_states.shotgun)
+if (weapon == weapon_states.shotgun)
 {
     if (mouse_check_button_pressed(mb_left))
     {
         if (fire_again)
         {
-            var bullet_c = instance_create(x,y,obj_bullet);
-            bullet_c.speed = obj_bullet.bullet_speed;
-            bullet_c.direction = point_direction(x,y,mouse_x,mouse_y);
-        
-            var bullet_l = instance_create(x,y,obj_bullet);
-            bullet_l.speed = obj_bullet.bullet_speed;
-            bullet_l.direction = bullet_c.direction - 30; 
-        
-            var bullet_r = instance_create(x,y,obj_bullet);
-            bullet_r.speed = obj_bullet.bullet_speed;
-            bullet_r.direction = bullet_c.direction + 30;   
+            instance_create(x,y,obj_shotgun_shots);
          
             fire_again = false;
             alarm[0] = 30;
@@ -80,15 +66,13 @@ if (weapon = weapon_states.shotgun)
     }
 }
  // Sniper 
-if (weapon = weapon_states.sniper)
+if (weapon == weapon_states.sniper)
 {
     if (mouse_check_button_pressed(mb_left))
     {
         if (fire_again)
         {
-            var bullet = instance_create(x,y,obj_bullet);
-            bullet.speed = obj_bullet.bullet_speed + 10;
-            bullet.direction = point_direction(x,y,mouse_x,mouse_y);
+            instance_create(x,y,obj_sniper_bullets);
          
             fire_again = false;
             alarm[0] = 60;
@@ -97,6 +81,23 @@ if (weapon = weapon_states.sniper)
 }
 
 // Transform
+if (mouse_check_button_pressed(mb_right))
+{
+    if (state == player_states.human)
+    {
+        state = player_states.cheetah;
+    }
+    else if (state == player_states.cheetah)
+    {
+        state = player_states.octopus;
+    }
+    else if (state == player_states.octopus) 
+    {
+        state = player_states.human;
+    }
+}
+
+// Weapon switch (for testing purposes)
 if (keyboard_check_pressed(vk_numpad0)) 
 {
     //state = player_states.human;

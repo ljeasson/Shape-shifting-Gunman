@@ -29,27 +29,91 @@ if (vspeed > max_speed) {vspeed = max_speed_octopus};
 if (vspeed < -max_speed) {vspeed = -max_speed_octopus};
 
 // Shoot
-if (mouse_check_button_pressed(mb_left)) 
+ // Pistol
+if (weapon == weapon_states.pistol)
 {
-    for (i = 1; i <= 8; i++)
+    if (mouse_check_button_pressed(mb_left))
     {
-        var bullet = instance_create(x,y,obj_bullet);
-        bullet.speed = obj_bullet.bullet_speed;
-        bullet.direction = i * 45;
+        var shot = instance_create(x,y,obj_pistol_bullets);
+    }
+}
+ // SMG
+if (weapon == weapon_states.smg)
+{
+    if (mouse_check_button(mb_left))
+    {
+        if (fire_again)
+        {
+            instance_create(x,y,obj_smg_bullets);
+            
+            fire_again = false;
+            alarm[0] = 3.25;
+        }
+    }
+}
+ // Shotgun
+if (weapon == weapon_states.shotgun)
+{
+    if (mouse_check_button_pressed(mb_left))
+    {
+        if (fire_again)
+        {
+            instance_create(x,y,obj_shotgun_shots);
+         
+            fire_again = false;
+            alarm[0] = 30;
+         }
+    }
+}
+ // Sniper 
+if (weapon == weapon_states.sniper)
+{
+    if (mouse_check_button_pressed(mb_left))
+    {
+        if (fire_again)
+        {
+            instance_create(x,y,obj_sniper_bullets);
+         
+            fire_again = false;
+            alarm[0] = 60;
+         }
     }
 }
 
 // Transform
+if (mouse_check_button_pressed(mb_right))
+{
+    if (state == player_states.human)
+    {
+        state = player_states.cheetah;
+    }
+    else if (state == player_states.cheetah)
+    {
+        state = player_states.octopus;
+    }
+    else if (state == player_states.octopus) 
+    {
+        state = player_states.human;
+    }
+}
+
+// Weapon switch (for testing purposes)
 if (keyboard_check_pressed(vk_numpad0)) 
 {
-    state = player_states.human;
+    //state = player_states.human;
+    weapon = weapon_states.pistol;
 }
 if (keyboard_check_pressed(vk_numpad1)) 
 {
-    state = player_states.cheetah;
+    //state = player_states.cheetah;
+    weapon = weapon_states.smg;
 }
 if (keyboard_check_pressed(vk_numpad2)) 
 {
-    state = player_states.octopus;
+    weapon = weapon_states.shotgun;
+}
+if (keyboard_check_pressed(vk_numpad3)) 
+{
+    weapon = weapon_states.sniper;
 }
 

@@ -16,11 +16,15 @@
     </sprites>
     <sprite>sprites\spr_solid_block</sprite>
     <sprite>sprites\spr_bullet</sprite>
+    <sprite>sprites\spr_smg_bullet</sprite>
+    <sprite>sprites\spr_shotgun_shot</sprite>
+    <sprite>sprites\spr_sniper_bullet</sprite>
     <sprite>sprites\spr_octopus</sprite>
     <sprite>sprites\spr_cheetah</sprite>
     <sprite>sprites\spr_Play</sprite>
     <sprite>sprites\spr_Quit</sprite>
     <sprite>sprites\spr_Title</sprite>
+    <sprite>sprites\spr_pistol_hold</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -51,12 +55,20 @@
       <object>objects\obj_enemy_skin</object>
     </objects>
     <object>objects\obj_bullet</object>
+    <object>objects\obj_smg_bullet</object>
+    <object>objects\obj_shotgun_shot</object>
+    <object>objects\obj_sniper_bullet</object>
     <object>objects\obj_Play</object>
     <object>objects\obj_Quit</object>
+    <object>objects\obj_pistol_bullets</object>
+    <object>objects\obj_smg_bullets</object>
+    <object>objects\obj_shotgun_shots</object>
+    <object>objects\obj_sniper_bullets</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_menu</room>
     <room>rooms\room_test</room>
+    <room>rooms\room_test_small</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
